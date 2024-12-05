@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinWise - Financial Education & Budgeting App</title>
+    <style>
+        /* Dark Theme Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #673AB7;
+            padding: 20px;
+            color: #FFFFFF;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .section {
+            padding: 40px 0;
+            border-bottom: 1px solid #333;
+        }
+        .section h2 {
+            font-size: 1.8em;
+            color: #BB86FC;
+            margin-bottom: 20px;
+        }
+        .feature {
+            background-color: #1E1E1E;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .feature h3 {
+            font-size: 1.4em;
+            color: #BB86FC;
+            margin-top: 0;
+        }
+        .button {
+            background-color: #BB86FC;
+            color: #121212;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .button:hover {
+            background-color: #985EFF;
+        }
+        input[type="number"], input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background-color: #333;
+            color: #E0E0E0;
+        }
+        .budget-results {
+            margin-top: 20px;
+        }
+        .budget-category {
+            background-color: #1E1E1E;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #BB86FC;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>FinWise</h1>
+    <p>Empowering India with Financial Wisdom & Budgeting Tools</p>
+</header>
+
+<div class="container">
+    <!-- Home Section -->
+    <section class="section" id="home">
+        <h2>Welcome to FinWise</h2>
+        <p>FinWise is a mobile app designed to help individuals manage their finances, learn about money management, and achieve financial goals. Tailored specifically for Indian users, FinWise provides tools for budgeting, goal-setting, and personalized learning paths.</p>
+        <a href="#features" class="button">Explore Features</a>
+    </section>
+
+    <!-- Why FinWise Section -->
+    <section class="section" id="why">
+        <h2>Why FinWise?</h2>
+        <p>Many people face challenges in managing their money and understanding basic financial concepts. FinWise aims to bridge this gap by providing accessible financial education and easy-to-use budgeting tools.</p>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="section" id="features">
+        <h2>Key Features</h2>
+        <div class="feature">
+            <h3>Budgeting Made Simple</h3>
+            <p>Create monthly budgets with ease and track your spending in various categories like groceries, utilities, and entertainment.</p>
+        </div>
+        <div class="feature">
+            <h3>Personalized Learning Paths</h3>
+            <p>Learn about savings, investments, and debt management with modules tailored to your needs.</p>
+        </div>
+        <div class="feature">
+            <h3>Goal Setting</h3>
+            <p>Set financial goals, like saving for an emergency fund, and track your progress towards achieving them.</p>
+        </div>
+        <div class="feature">
+            <h3>Community Support</h3>
+            <p>Join a community of learners to discuss finance-related topics, share tips, and support each other's journeys.</p>
+        </div>
+    </section>
+
+    <!-- Budget Calculator Section -->
+    <section class="section" id="budget-calculator">
+        <h2>Budget Calculator</h2>
+        <p>Enter your monthly income to get a suggested budget breakdown:</p>
+        
+        <!-- Input for Income -->
+        <label for="income">Monthly Income (₹):</label>
+        <input type="number" id="income" placeholder="Enter your income" required>
+        
+        <!-- Calculate Budget Button -->
+        <button class="button" onclick="calculateBudget()">Calculate Budget</button>
+        
+        <!-- Budget Results -->
+        <div id="budgetResults" class="budget-results"></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2>Get in Touch</h2>
+        <p>Want to learn more about FinWise? Contact us or join the waitlist to be notified when we launch.</p>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <input type="submit" value="Join Waitlist" class="button">
+        </form>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2023 FinWise | Financial Education for Everyone</p>
+</footer>
+
+<script>
+    // Function to calculate budget
+    function calculateBudget() {
+        // Get income input
+        const income = parseFloat(document.getElementById("income").value);
+        
+        // Check if input is valid
+        if (isNaN(income) || income <= 0) {
+            alert("Please enter a valid income amount.");
+            return;
+        }
+
+        // Budget percentages for each category
+        const budgetCategories = [
+            { name: "Housing (30%)", percentage: 0.30 },
+            { name: "Groceries (20%)", percentage: 0.20 },
+            { name: "Transportation (10%)", percentage: 0.10 },
+            { name: "Savings (15%)", percentage: 0.15 },
+            { name: "Utilities (10%)", percentage: 0.10 },
+            { name: "Entertainment (5%)", percentage: 0.05 },
+            { name: "Miscellaneous (10%)", percentage: 0.10 }
+        ];
+
+        // Calculate budget breakdown
+        let budgetResults = "<h2>Suggested Budget Breakdown:</h2>";
+        budgetCategories.forEach(category => {
+            const amount = income * category.percentage;
+            budgetResults += `
+                <div class="budget-category">
+                    <strong>${category.name}:</strong> ₹${amount.toFixed(2)}
+                </div>
+            `;
+        });
+
+        // Display the budget results
+        document.getElementById("budgetResults").innerHTML = budgetResults;
+    }
+</script>
+
+</body>
+</html>
